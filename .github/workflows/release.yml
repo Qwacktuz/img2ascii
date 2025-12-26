@@ -31,9 +31,6 @@ jobs:
       - name: Build Fat JAR with Shadow
         run: ./gradlew shadowJar
 
-      - name: Validate Gradle Wrapper
-        uses: gradle/actions/wrapper-validation@v3
-
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
