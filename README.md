@@ -5,13 +5,16 @@ A CLI tool written in Kotlin that converts images (JPG, PNG) into ASCII art dire
 ## Installation
 
 ### Prerequisites
+- Java 25 or higher must be installed.
+  - I recommend [Adoptium Temurin 25](https://adoptium.net/temurin/releases/?version=25&os=any&arch=any).
+  - Check your version by running: `java -version`
 
-- Java 8 or higher installed.
+Install script coming soon™️
 
 ## Usage
 
 ```bash
-img2ascii <path-to-image> <width>
+java -jar img2ascii.jar <path-to-image> <width>
 ```
 
 ### Build from Source
