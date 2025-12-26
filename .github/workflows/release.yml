@@ -1,0 +1,43 @@
+name: Build and Release fat JAR
+
+on:
+  push:
+    tags:
+      - 'v*' # Triggers on v* tag push
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Give GH actions perms for release publish
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v6
+
+      - name: Set up JDK 25
+        uses: actions/setup-java@v5
+        with:
+          java-version: '25'
+          distribution: 'temurin'
+          cache: 'gradle' # Cache gradle dependencies
+
+      - name: Make Gradlew Executable
+        run: chmod +x gradlew
+
+      - name: Validate Gradle Wrapper
+      - uses: gradle/actions/wrapper-validation@v5
+
+      - name: Build Fat JAR with Shadow
+        run: ./gradlew shadowJar
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/actions/wrapper-validation@v3
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/libs/*-all.jar
+          generate_release_notes: true # Automatically list commit messages the last tag
+          draft: false
+          prerelease: false
