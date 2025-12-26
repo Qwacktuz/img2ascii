@@ -1,4 +1,4 @@
-package img2ascii
+package dev.cactuz.img2ascii
 
 fun main(args: Array<String>) {
     if (args.isEmpty()) {

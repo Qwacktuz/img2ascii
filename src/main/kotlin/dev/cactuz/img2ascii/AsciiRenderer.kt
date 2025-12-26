@@ -1,4 +1,4 @@
-package img2ascii
+package dev.cactuz.img2ascii
 
 import java.awt.Color
 import java.awt.image.BufferedImage
